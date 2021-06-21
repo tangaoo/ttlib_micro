@@ -2,10 +2,10 @@ add_rules("mode.debug", "mode.release")
 --add_includedirs("src/ttlib")
 -- set_languages("c99") 
 
-target("ttlib")
+target("ttlib_mirco")
     set_kind("static")
-    add_files("src/ttlib/**.c")
-    add_headerfiles("src/(ttlib/**.h)")
+    add_files("src/ttlib_mirco/**.c")
+    add_headerfiles("src/(ttlib_mirco/**.h)")
 
     if is_plat("windows") then
     -- set third party lib
@@ -19,14 +19,14 @@ target("ttlib")
     end
 
 
-target("ttlib_demo")
+target("ttlib_mirco_demo")
     set_kind("binary")
-    add_deps("ttlib")
+    add_deps("ttlib_mirco")
     add_files("src/demo/**.c")    
     -- add_syslinks("pthread")
 
     -- set ttlib .h file
-    add_includedirs("src/ttlib/")
+    add_includedirs("src/ttlib_mirco/")
     
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
