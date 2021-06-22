@@ -20,7 +20,6 @@
 #include "even.h"
 #include "file.h"
 #include "semaphore.h"
-#include "socket.h"
 #include "thread.h"
 #include "time.h"
 
