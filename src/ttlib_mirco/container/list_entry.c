@@ -11,7 +11,6 @@
  * includes
  */
 #include "list_entry.h"
-#include "../memory/impl/static_fixed_pool.h"
 
 /* //////////////////////////////////////////////////////////////////////////////////////
 * iterator implementation

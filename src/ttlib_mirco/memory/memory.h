@@ -13,9 +13,7 @@
 /* //////////////////////////////////////////////////////////////////////////////////////
  * includes
  */
-#include "impl/impl.h"
 #include "allocator.h"
 #include "native_allocator.h"
-#include "fixed_pool.h"
 
 #endif

@@ -51,9 +51,6 @@ static tt_demo_t g_demo[] = {
 	TT_DEMO_MAIN_ITEM(single_list_entry),
 	TT_DEMO_MAIN_ITEM(crc8),
 	TT_DEMO_MAIN_ITEM(queue_entry),
-	TT_DEMO_MAIN_ITEM(static_fixed_pool),
-	TT_DEMO_MAIN_ITEM(fixed_pool),
-	TT_DEMO_MAIN_ITEM(static_large_allocator),
 	TT_DEMO_MAIN_ITEM(platform_thread),
 };
 

@@ -18,7 +18,6 @@
  * includes
  */
 #include "ttlib.h"
-#include "memory/impl/impl.h"
 
 // the ttlib version
 static const char* version = "v1.1.1";
@@ -34,9 +33,6 @@ tt_bool_t tt_lib_init(tt_handle_t priv, tt_allocator_ref_t allocator)
 	do{
 		/// trace init
 		if(!tt_trace_init()) break;
-
-		/// the memory init
-		if(!tt_memory_env_init(allocator)) break;
 
 		tt_trace_d("ttlib(%s) init success!", version);
 
