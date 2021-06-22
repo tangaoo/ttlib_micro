@@ -14,6 +14,5 @@
  * includes
  */
 #include "circular_buffer.h"
-#include "queue_buffer.h"
 
 #endif

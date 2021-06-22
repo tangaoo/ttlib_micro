@@ -1,5 +1,13 @@
-
-
+/*!The TT Library
+ *
+ * @Copyright (C) 2019-2021, TTLIB
+ *
+ * @file       atomic.h
+ * @ingroup    atomic
+ * @author     tango
+ * @date       2021-06-22 
+ * @brief      atomic.h file
+ */
 #ifndef TT_PLATFORM_COMPILER_LIBC_ATOMIC_H
 #define TT_PLATFORM_COMPILER_LIBC_ATOMIC_H
 

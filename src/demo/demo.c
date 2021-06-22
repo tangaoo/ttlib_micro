@@ -51,13 +51,12 @@ static tt_demo_t g_demo[] = {
 	TT_DEMO_MAIN_ITEM(single_list_entry),
 	TT_DEMO_MAIN_ITEM(crc8),
 	TT_DEMO_MAIN_ITEM(queue_entry),
-	TT_DEMO_MAIN_ITEM(platform_thread),
 };
 
 tt_int_t main(tt_int_t argc, tt_char_t** argv)
 {
 #if 1
-	if (!tt_lib_init(tt_null, tt_native_allocator())) return -1;
+	if (!tt_lib_init(tt_null)) return -1;
 #else
 #endif		
 	

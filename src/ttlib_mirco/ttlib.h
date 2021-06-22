@@ -19,7 +19,6 @@
 #include "container/iterator.h"
 #include "algorithm/algorithm.h"
 #include "utils/utils.h"
-#include "memory/memory.h"
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * extern
@@ -33,7 +32,7 @@ __tt_extern_c_enter__
  *
  * @return              tt_void
  */
-tt_bool_t tt_lib_init(tt_handle_t priv, tt_allocator_ref_t allocator);
+tt_bool_t tt_lib_init(tt_handle_t priv);
 
 /*! the ttlib exit
  */

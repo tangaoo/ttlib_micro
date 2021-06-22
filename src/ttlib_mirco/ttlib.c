@@ -25,7 +25,7 @@ static const char* version = "v1.1.1";
 /* //////////////////////////////////////////////////////////////////////////////////////
  * implementation
  */
-tt_bool_t tt_lib_init(tt_handle_t priv, tt_allocator_ref_t allocator)
+tt_bool_t tt_lib_init(tt_handle_t priv)
 {
 	tt_bool_t ret = tt_false;
 	
