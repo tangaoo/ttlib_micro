@@ -17,17 +17,9 @@
 #include <errno.h>
 #include <semaphore.h>
 
-tt_long_t sem_timedwait_bak(sem_t* h, struct timespec* t)
-{
-    tt_trace_noimpl();
-}
-static __attribute__((weakref("sem_timedwait_bak"))) tt_int_t sem_timedwait();
-// void foo() __attribute__((weakref("bar")));
-// tt_int_t sem_timedwait() __attribute__((weakref("sem_timedwait_bak")));
 /* //////////////////////////////////////////////////////////////////////////////////////
  * implementation
  */
-
 tt_semaphore_ref_t tt_semaphore_init(tt_size_t value)
 {
     // done
@@ -98,6 +90,7 @@ tt_size_t tt_semaphore_value(tt_semaphore_ref_t semaphore)
     return !sem_getvalue(h, &val)? (tt_long_t)val : 1;
 }
 
+#if 0
 tt_long_t tt_semaphore_wait(tt_semaphore_ref_t semaphore, tt_long_t timeout)
 {
     // check
@@ -127,4 +120,24 @@ tt_long_t tt_semaphore_wait(tt_semaphore_ref_t semaphore, tt_long_t timeout)
     // failed
     return -1;
 }
+#endif
 
+tt_long_t tt_semaphore_wait(tt_semaphore_ref_t semaphore)
+{
+    // check
+    sem_t* h = (sem_t*)semaphore;
+    tt_assert_and_check_return_val(h, -1);
+
+    // wait
+    tt_long_t ok = 0;
+    ok = sem_wait(h);
+
+    // ok?
+    tt_assert_and_check_return_val(ok, 1);
+
+    // timeout
+    if(errno == EINTR || errno == EAGAIN || errno == ETIMEDOUT) return 0;
+
+    // failed
+    return -1;
+}
