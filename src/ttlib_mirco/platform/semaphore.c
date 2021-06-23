@@ -21,8 +21,9 @@ tt_long_t sem_timedwait_bak(sem_t* h, struct timespec* t)
 {
     tt_trace_noimpl();
 }
-static __attribute__((weakref("sem_timedwait_bak"))) sem_timedwait();
-
+static __attribute__((weakref("sem_timedwait_bak"))) tt_int_t sem_timedwait();
+// void foo() __attribute__((weakref("bar")));
+// tt_int_t sem_timedwait() __attribute__((weakref("sem_timedwait_bak")));
 /* //////////////////////////////////////////////////////////////////////////////////////
  * implementation
  */
