@@ -17,6 +17,6 @@
 #include "trace.h"
 #include "bits.h"
 #include "dump.h"
-#include "mix.h"
+#include "endian.h"
 
 #endif
