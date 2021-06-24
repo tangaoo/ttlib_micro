@@ -20,7 +20,7 @@
 #include "ttlib.h"
 
 // the ttlib version
-static const char* version = "v1.1.1";
+static const char* version = "v0.1.0";
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * implementation

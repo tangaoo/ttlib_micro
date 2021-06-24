@@ -122,25 +122,25 @@ typedef struct __tt_single_list_entry_head_t
 
 /*! init list
  *
- * @param list                                  the list
- * @param entry_offset                          the entry offset
- * @param entry_size                            the item size
- * @param copy_func                             the copy func of the entry for algorithm, .e.g sort
+ * @param list                     the list
+ * @param entry_offset             the entry offset
+ * @param entry_size               the item size
+ * @param copy_func                the copy func of the entry for algorithm, .e.g sort
  */
-tt_void_t                                       tt_single_list_entry_init_(tt_single_list_entry_head_ref_t list, tt_size_t entry_offset, tt_size_t entry_size, tt_entry_copy_t copy_func);
+tt_void_t                          tt_single_list_entry_init_(tt_single_list_entry_head_ref_t list, tt_size_t entry_offset, tt_size_t entry_size, tt_entry_copy_t copy_func);
 
 /*! exit list
  *
- * @param list                                  the list
+ * @param list                     the list
  */
-tt_void_t                                       tt_single_list_entry_exit(tt_single_list_entry_head_ref_t list);
+tt_void_t                          tt_single_list_entry_exit(tt_single_list_entry_head_ref_t list);
 
 /*! get the list iterator
  *
- * @param list                                  the list
+ * @param list                     the list
  * @return iterator
  */
-tt_iterator_ref_t                               tt_single_list_entry_iterator(tt_single_list_entry_head_ref_t list);
+tt_iterator_ref_t                  tt_single_list_entry_iterator(tt_single_list_entry_head_ref_t list);
 
 
 /* //////////////////////////////////////////////////////////////////////////////////////
@@ -148,9 +148,9 @@ tt_iterator_ref_t                               tt_single_list_entry_iterator(tt
  */
 /*! list clear
  *
- * @param list                                  the list
+ * @param list                     the list
  */
-static __tt_inline__ tt_void_t                  tt_single_list_entry_clear(tt_single_list_entry_head_ref_t list)
+static __tt_inline__ tt_void_t     tt_single_list_entry_clear(tt_single_list_entry_head_ref_t list)
 {
 	/// assert
 	tt_assert(list);
@@ -164,10 +164,10 @@ static __tt_inline__ tt_void_t                  tt_single_list_entry_clear(tt_si
 
 /*! get list size
  *
- * @param list                                   the list
- * @return                                       the entry count of list
+ * @param list                     the list
+ * @return                         the entry count of list
  */
-static __tt_inline__ tt_size_t                   tt_single_list_entry_size(tt_single_list_entry_head_ref_t list)
+static __tt_inline__ tt_size_t     tt_single_list_entry_size(tt_single_list_entry_head_ref_t list)
 {
 	/// assert
 	tt_assert(list);
@@ -178,8 +178,8 @@ static __tt_inline__ tt_size_t                   tt_single_list_entry_size(tt_si
 
 /*! get entry next entry
 *
-* @param entry                                    entry of list
-* @return                                         next entry
+* @param entry                     entry of list
+* @return                          next entry
 */
 static __tt_inline__ tt_single_list_entry_ref_t   tt_single_list_entry_next(tt_single_list_entry_ref_t entry)
 {
@@ -192,8 +192,8 @@ static __tt_inline__ tt_single_list_entry_ref_t   tt_single_list_entry_next(tt_s
 
 /*! the list head
 *
-* @param list                                      the list
-* @return                                          head entry
+* @param list                      the list
+* @return                          head entry
 */
 static __tt_inline__ tt_single_list_entry_ref_t    tt_single_list_entry_head(tt_single_list_entry_head_ref_t list)
 {
@@ -206,8 +206,8 @@ static __tt_inline__ tt_single_list_entry_ref_t    tt_single_list_entry_head(tt_
 
 /*! the list last
 *
-* @param list                                       the list
-* @return                                           last entry
+* @param list                      the list
+* @return                          last entry
 */
 static __tt_inline__ tt_single_list_entry_ref_t     tt_single_list_entry_last(tt_single_list_entry_head_ref_t list)
 {
@@ -220,8 +220,8 @@ static __tt_inline__ tt_single_list_entry_ref_t     tt_single_list_entry_last(tt
 
 /*! the list tail
 *
-* @param list                                        the list
-* @return                                            tail
+* @param list                      the list
+* @return                          tail
 */
 static __tt_inline__ tt_single_list_entry_ref_t      tt_single_list_entry_tail(tt_single_list_entry_head_ref_t list)
 {
@@ -234,10 +234,10 @@ static __tt_inline__ tt_single_list_entry_ref_t      tt_single_list_entry_tail(t
 
 /*! the list is null?
 *
-* @param list                                the list
-* @return                                    is null?
+* @param list                      the list
+* @return                          is null?
 */
-static __tt_inline__ tt_bool_t               tt_single_list_entry_is_null(tt_single_list_entry_head_ref_t list)
+static __tt_inline__ tt_bool_t     tt_single_list_entry_is_null(tt_single_list_entry_head_ref_t list)
 {
 	/// assert
 	tt_assert(list);
@@ -247,10 +247,10 @@ static __tt_inline__ tt_bool_t               tt_single_list_entry_is_null(tt_sin
 
 /*! the entry is head?
 *
-* @param list                                the list
-* @return                                    is head?
+* @param list                      the list
+* @return                          is head?
 */
-static __tt_inline__ tt_bool_t               tt_single_list_entry_is_head(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t entry)
+static __tt_inline__ tt_bool_t     tt_single_list_entry_is_head(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t entry)
 {
 	/// assert
 	tt_assert(list && entry);
@@ -260,10 +260,10 @@ static __tt_inline__ tt_bool_t               tt_single_list_entry_is_head(tt_sin
 
 /*! the entry is last?
 *
-* @param list                                the list
-* @return                                    is last?
+* @param list                      the list
+* @return                          is last?
 */
-static __tt_inline__ tt_bool_t               tt_single_list_entry_is_last(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t entry)
+static __tt_inline__ tt_bool_t     tt_single_list_entry_is_last(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t entry)
 {
 	/// assert
 	tt_assert(list && entry);
@@ -273,11 +273,11 @@ static __tt_inline__ tt_bool_t               tt_single_list_entry_is_last(tt_sin
 
 /*! insert entry after node
 *
-* @param list                                the list
-* @param node                                node of the list
-* @param entry                               need to be inserted
+* @param list                      the list
+* @param node                      node of the list
+* @param entry                     need to be inserted
 */
-static __tt_inline__ tt_void_t               tt_single_list_entry_insert_next(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t node, tt_single_list_entry_ref_t entry)
+static __tt_inline__ tt_void_t     tt_single_list_entry_insert_next(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t node, tt_single_list_entry_ref_t entry)
 {
 	/// assert
 	tt_assert(list && node && entry);
@@ -295,10 +295,10 @@ static __tt_inline__ tt_void_t               tt_single_list_entry_insert_next(tt
 
 /*! insert list head
 *
-* @param list                                 the list
-* @param entry                                need to be inserted
+* @param list                      the list
+* @param entry                     need to be inserted
 */
-static __tt_inline__ tt_void_t                tt_single_list_entry_insert_head(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t entry)
+static __tt_inline__ tt_void_t     tt_single_list_entry_insert_head(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t entry)
 {
 	/// assert
 	tt_assert(list && entry);
@@ -309,10 +309,10 @@ static __tt_inline__ tt_void_t                tt_single_list_entry_insert_head(t
 
 /*! insert list last
 *
-* @param list                                 the list
-* @param entry                                need to be inserted
+* @param list                      the list
+* @param entry                     need to be inserted
 */
-static __tt_inline__ tt_void_t                tt_single_list_entry_insert_tail(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t entry)
+static __tt_inline__ tt_void_t     tt_single_list_entry_insert_tail(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t entry)
 {
 	/// assert
 	tt_assert(list && entry);
@@ -324,11 +324,11 @@ static __tt_inline__ tt_void_t                tt_single_list_entry_insert_tail(t
 
 /*! replace entry after node
 *
-* @param list                                 the list
-* @param node                                 node of the list
-* @param entry                                will to replace
+* @param list                      the list
+* @param node                      node of the list
+* @param entry                     will to replace
 */
-static __tt_inline__ tt_void_t                tt_single_list_entry_replace_next(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t node, tt_single_list_entry_ref_t entry)
+static __tt_inline__ tt_void_t     tt_single_list_entry_replace_next(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t node, tt_single_list_entry_ref_t entry)
 {
 	/// assert
 	tt_assert(node && node->next);
@@ -344,10 +344,10 @@ static __tt_inline__ tt_void_t                tt_single_list_entry_replace_next(
 
 /*! replace the list head node
 *
-* @param list                                  the list
-* @param entry                                 will to replace
+* @param list                      the list
+* @param entry                     will to replace
 */
-static __tt_inline__ tt_void_t                 tt_single_list_entry_replace_head(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t entry)
+static __tt_inline__ tt_void_t     tt_single_list_entry_replace_head(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t entry)
 {
 	/// assert
 	tt_assert(list && entry);
@@ -358,11 +358,11 @@ static __tt_inline__ tt_void_t                 tt_single_list_entry_replace_head
 
 /*! remove one node(just for inside!)
 *
-* @param list                                  the list
-* @param prev                                  prev
-* @param next                                  next
+* @param list                      the list
+* @param prev                      prev
+* @param next                      next
 */
-static __tt_inline__ tt_void_t                 tt_single_list_entry_remove_(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t prev, tt_single_list_entry_ref_t next)
+static __tt_inline__ tt_void_t     tt_single_list_entry_remove_(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t prev, tt_single_list_entry_ref_t next)
 {
 	/// assert
 	tt_assert(list && prev && list->size);
@@ -377,10 +377,10 @@ static __tt_inline__ tt_void_t                 tt_single_list_entry_remove_(tt_s
 
 /*! remove next node
 *
-* @param list                                  the list
-* @param prev                                  prev
+* @param list                      the list
+* @param prev                      prev
 */
-static __tt_inline__ tt_void_t                 tt_single_list_entry_remove_next(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t prev)
+static __tt_inline__ tt_void_t     tt_single_list_entry_remove_next(tt_single_list_entry_head_ref_t list, tt_single_list_entry_ref_t prev)
 {
 	/// assert
 	tt_assert(list && prev && prev->next);
@@ -390,9 +390,9 @@ static __tt_inline__ tt_void_t                 tt_single_list_entry_remove_next(
 
 /*! remove list head node
 *
-* @param list                                  the list
+* @param list                      the list
 */
-static __tt_inline__ tt_void_t                 tt_single_list_entry_remove_head(tt_single_list_entry_head_ref_t list)
+static __tt_inline__ tt_void_t     tt_single_list_entry_remove_head(tt_single_list_entry_head_ref_t list)
 {
 	/// assert
 	tt_assert(list->next);
