@@ -29,12 +29,14 @@ tt_bool_t tt_lib_init(tt_handle_t priv)
 {
 	tt_bool_t ret = tt_false;
 	
+	tt_trace_d("********************************************");
+
 	/// done
 	do{
 		/// trace init
 		if(!tt_trace_init()) break;
 
-		tt_trace_d("ttlib(%s) init success!", version);
+		tt_trace_d("ttlib version(%s)", version);
 
 		// detect compiler and print
 #ifdef TT_COMPILER_IS_GCC
@@ -58,6 +60,8 @@ tt_bool_t tt_lib_init(tt_handle_t priv)
 	} while (0);
 	
 	if(!ret) tt_trace_e("ttlib init error!!!");
+
+	tt_trace_d("********************************************");
 
 	return ret;
 }
