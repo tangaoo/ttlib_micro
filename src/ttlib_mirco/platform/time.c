@@ -70,8 +70,8 @@ tt_bool_t tt_gettimeofday(tt_timeval_t* tv, tt_timezone_t* tz)
     // tz
     if(tz)
     {
-        // tz->tz_minuteswest = ttz.tz_minuteswest;
-        // tz->tz_dsttime = ttz.tz_dsttime;  
+        tz->tz_minuteswest = 0/*ttz.tz_minuteswest*/;
+        tz->tz_dsttime = 0/*ttz.tz_dsttime*/;  
     }
 
     // ok
