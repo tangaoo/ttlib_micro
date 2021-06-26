@@ -4,7 +4,7 @@
  * @ingroup    platform
  * @author     tango
  * @date       2020-11-19 
- * @brief      mutex.h file
+ * @brief      mutex.h file 
  */
 
 #ifndef TT_PLATFORM_MUTEX_H
@@ -14,20 +14,19 @@
  * includes
  */
 #include "prefix.h"
+#include "pthread.h"
 
-#define  TT_POSIX             1
-#define  TT_POSIX_NO          0
-
-#if defined(TT_POSIX) && TT_POSIX
-#   include "pthread.h"
+/* //////////////////////////////////////////////////////////////////////////////////////
+ * types
+ */
 typedef pthread_mutex_t    tt_mutex_t;
 typedef pthread_mutex_t*   tt_mutex_ref_t;
 
-#elif defined(TT_POSIX_NO) && TT_POSIX_NO
-typedef tt_int32_t         tt_mutex_t;
-typedef tt_int32_t*        tt_mutex_ref_t;
-
-#endif
+/* //////////////////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+// mutex has two ways to initiailizer, static or dynamic
+#define TT_PTHREAD_MUTEX_INITIALIZER    PTHREAD_MUTEX_INITIALIZER 
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * extern

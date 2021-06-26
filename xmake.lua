@@ -1,6 +1,6 @@
 add_rules("mode.debug", "mode.release")
 --add_includedirs("src/ttlib")
--- set_languages("c99") 
+set_languages("c11") 
 
 target("ttlib_mirco")
     set_kind("static")

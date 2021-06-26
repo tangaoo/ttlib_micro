@@ -51,6 +51,7 @@ static tt_demo_t g_demo[] = {
 	TT_DEMO_MAIN_ITEM(single_list_entry),
 	TT_DEMO_MAIN_ITEM(crc8),
 	TT_DEMO_MAIN_ITEM(queue_entry),
+	TT_DEMO_MAIN_ITEM(platform_spinlock),
 };
 
 tt_int_t main(tt_int_t argc, tt_char_t** argv)

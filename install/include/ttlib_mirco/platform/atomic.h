@@ -18,6 +18,12 @@
 #include <stdatomic.h>
 
 /* //////////////////////////////////////////////////////////////////////////////////////
+ * types
+ */
+typedef __tt_volatile__ atomic_flag                     tt_atomic_flag_t;
+
+
+/* //////////////////////////////////////////////////////////////////////////////////////
  * macros
  */
 
@@ -34,7 +40,7 @@
 
 // test and set
 #define tt_atomic_flag_test_and_set_explicit(a, mode)   atomic_flag_test_and_set_explicit(a, mode)
-#define tt_atomic_flag_test_and_set                     atomic_flag_test_and_set(a)
+#define tt_atomic_flag_test_and_set(a)                  atomic_flag_test_and_set(a)
 
 // test
 #ifdef  atomic_flag_test_explicit
@@ -52,12 +58,12 @@
 /* //////////////////////////////////////////////////////////////////////////////////////
  * pravite implementation
  */
-static __tt_inline__ tt_bool_t tt_atomic_flag_test_explicit_libc(tt_atomic_flag_t* a, tt_init_t mode)
+static __tt_inline__ tt_bool_t tt_atomic_flag_test_explicit_libc(tt_atomic_flag_t* a, tt_int_t mode)
 {
     tt_assert(a);
     tt_assert_static(sizeof(tt_atomic_flag_t) == sizeof(unsigned char));
     
-    return (tt_bool_t)atomic_load_explicit((__tt_volatite__ _Atomic unsigned char*)a, mode);
+    return (tt_bool_t)atomic_load_explicit((__tt_volatile__ _Atomic unsigned char*)a, mode);
 }
 
 static __tt_inline__ tt_bool_t tt_atomic_flag_test_noatomic_libc(tt_atomic_flag_t* a)

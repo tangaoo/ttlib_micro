@@ -52,9 +52,9 @@ tt_bool_t tt_lib_init(tt_handle_t priv)
 #endif
 
 		// detect cpu endian
-		if(tt_little_endian() == TT_LITTLE_ENDIAN) tt_trace_d("litter endian\n");
-		else if(tt_little_endian() == TT_BIG_ENDIAN) tt_trace_d("big endian\n");
-		else tt_trace_d("wrong endian\n");
+		if(tt_little_endian() == TT_LITTLE_ENDIAN) tt_trace_d("litter endian");
+		else if(tt_little_endian() == TT_BIG_ENDIAN) tt_trace_d("big endian");
+		else tt_trace_d("wrong endian");
 
 		ret = tt_true;
 	} while (0);

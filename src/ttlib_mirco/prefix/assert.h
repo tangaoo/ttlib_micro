@@ -17,11 +17,18 @@
 #include "config.h"
 #include "trace.h"
 
+#include <assert.h>
+
 __tt_extern_c_enter__
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * macros
  */
+
+// need C11 standard
+#define tt_assert_static(x)          static_assert(x, "")
+#define tt_assert_static_msg(x, m)   static_assert(x, m)
+
 #if defined(__tt_debug__)
 #	define tt_assert(x)                                               do { if(!(!!(x))) {tt_trace_d("expr [%s], %s(), %d, %s", #x __tt_debug_val__); tt_abort_done();} }while(0)
 #   define tt_assert_and_check_abort(x)                               do {tt_assert(x); tt_check_abort(x); } while(0)

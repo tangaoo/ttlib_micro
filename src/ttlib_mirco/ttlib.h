@@ -19,6 +19,7 @@
 #include "container/iterator.h"
 #include "algorithm/algorithm.h"
 #include "utils/utils.h"
+#include "platform/platform.h"
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * extern
