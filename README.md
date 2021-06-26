@@ -1,5 +1,5 @@
 ## ttlib_micro
-* **ttlib_mirco** 是一个 C 项目支持库，提高 C 开发效率。是 [ttlib](https://github.com/tangaoo/ttlib) 的轻量级版本，去掉部分超重模块（内存管理、流管理、数据库封装、平台相关等），仅保留必要功能。且构建工具增加支持 Make。
+* **ttlib_mirco** 是一个 C 项目支持库，提高 C 开发效率。是 [ttlib](https://github.com/tangaoo/ttlib) 的轻量级版本，去掉超重模块（内存管理、流管理、数据库封装、平台相关等），保留必要功能，构建工具增加支持 Make。
 
 ## 编译 
 * ttlib_micro 构建工具用 [xmake](https://github.com/xmake-io/xmake)。
@@ -60,6 +60,17 @@ xmake
 - 大小端
 - 通用协议 
 - trace实现
+
+#### platform（平台相关模块）
+平台模块主要是对操作系统资源的一层包裹，方便移植到其他系统。
+- atomic 原子操作，需要 C11 支持。
+- mutex
+- memcpy
+- semaphore
+- spinlock 由互斥量/原子操作两种实现方式
+- thread
+- time
+
 
 ## TODO
 * [ ] 增加 Make 构建工具支持；
