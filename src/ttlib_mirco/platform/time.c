@@ -57,8 +57,8 @@ tt_bool_t tt_gettimeofday(tt_timeval_t* tv, tt_timezone_t* tz)
 {
     // gettimeofday
     struct timeval ttv  = {0};
-    struct timezone ttz;
-    if(gettimeofday(&ttv, &ttz)) return tt_false;
+    // struct timezone ttz;
+    if(gettimeofday(&ttv, tt_null)) return tt_false;
 
     // tv
     if(tv)
@@ -70,8 +70,8 @@ tt_bool_t tt_gettimeofday(tt_timeval_t* tv, tt_timezone_t* tz)
     // tz
     if(tz)
     {
-        tz->tz_minuteswest = ttz.tz_minuteswest;
-        tz->tz_dsttime = ttz.tz_dsttime;  
+        // tz->tz_minuteswest = ttz.tz_minuteswest;
+        // tz->tz_dsttime = ttz.tz_dsttime;  
     }
 
     // ok
