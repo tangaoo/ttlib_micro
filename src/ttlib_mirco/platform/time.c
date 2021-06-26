@@ -56,7 +56,7 @@ tt_bool_t tt_gettimeofday(tt_timeval_t* tv, tt_timezone_t* tz)
 {
     // gettimeofday
     struct timeval ttv  = {0};
-    struct timezone ttz = {0};
+    struct timezone ttz;
     if(gettimeofday(&ttv, &ttz)) return tt_false;
 
     // tv
