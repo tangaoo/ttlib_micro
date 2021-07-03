@@ -51,9 +51,10 @@ tt_void_t tt_demo_platform_semaphore_main(tt_int_t argc, tt_char_t** argv)
 	// print title
 	tt_print_title("demo platform_semaphore");
 
-    tt_thread_ref_t td1 = tt_thread_init(tt_null, demo_semaphore_pthread, tt_null, 0);
+    demo_semaphore_pthread(tt_null);    
+    //tt_thread_ref_t td1 = tt_thread_init(tt_null, demo_semaphore_pthread, tt_null, 0);
 
-    tt_thread_wait(td1, 0, tt_null);
+    //tt_thread_wait(td1, 0, tt_null);
 
     tt_semaphore_wait(semaphore);
     tt_trace_d("have wait semaphore");

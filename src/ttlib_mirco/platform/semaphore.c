@@ -137,11 +137,11 @@ tt_long_t tt_semaphore_wait(tt_semaphore_ref_t semaphore)
     tt_assert_and_check_return_val(h, -1);
 
     // wait
-    tt_long_t ok = 0;
+    tt_long_t ok = -1;
     ok = sem_wait(h);
 
     // ok?
-    tt_assert_and_check_return_val(ok, 1);
+    tt_assert_and_check_return_val(!ok, 1);
 
     // timeout
     if(errno == EINTR || errno == EAGAIN || errno == ETIMEDOUT) return 0;
