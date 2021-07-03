@@ -10,12 +10,19 @@
  */
 
 /* //////////////////////////////////////////////////////////////////////////////////////
+ * trace
+ */
+#define TT_TRACE_MODULE_NAME          "TTLIB_PLATFORM_SEMAPHORE"
+#define TT_TRACE_MODULE_DEBUG         (1)
+
+/* //////////////////////////////////////////////////////////////////////////////////////
  * includes
  */
 #include "semaphore.h"
 #include <time.h>
 #include <errno.h>
 #include <semaphore.h>
+#include <string.h>
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * implementation
@@ -29,6 +36,7 @@ tt_semaphore_ref_t tt_semaphore_init(tt_size_t value)
     {
         // make semaphore
         semaphore = (sem_t*)tt_malloc0(sizeof(sem_t));
+        tt_trace_d("semaphore, %p", semaphore);
         tt_assert_and_check_return_val(semaphore, tt_null);
 
         // init

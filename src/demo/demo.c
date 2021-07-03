@@ -52,6 +52,7 @@ static tt_demo_t g_demo[] = {
 	TT_DEMO_MAIN_ITEM(crc8),
 	TT_DEMO_MAIN_ITEM(queue_entry),
 	TT_DEMO_MAIN_ITEM(platform_spinlock),
+	TT_DEMO_MAIN_ITEM(platform_semaphore),
 };
 
 tt_int_t main(tt_int_t argc, tt_char_t** argv)
@@ -110,7 +111,7 @@ tt_int_t main(tt_int_t argc, tt_char_t** argv)
 		// print usage
 		tt_trace_i("%s", "+-------------------------------------+");
 		tt_trace_i("|  please check demo name!            |");	
-		tt_trace_i("|  usage, xmake r ttlib_demo utils    |");
+		tt_trace_i("|  usage, xmake r ttlib_mirco_demo utils    |");
 		tt_trace_i("%s", "+-------------------------------------+");
 		// walk and prinf
 		for(i = 0; i < n; i++) tt_trace_i("%s", g_demo[i].name);

@@ -37,6 +37,8 @@ TT_DEMO_MAIN_DECL(fixed_pool);
 TT_DEMO_MAIN_DECL(static_large_allocator);
 TT_DEMO_MAIN_DECL(platform_thread);
 TT_DEMO_MAIN_DECL(platform_spinlock);
+TT_DEMO_MAIN_DECL(platform_spinlock);
+TT_DEMO_MAIN_DECL(platform_semaphore);
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * extern
