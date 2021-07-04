@@ -10,6 +10,12 @@
  */
 
 /* //////////////////////////////////////////////////////////////////////////////////////
+ * trace
+ */
+#define TT_TRACE_MODULE_NAME          "TTLIB_PLATFORM_THREAD"
+#define TT_TRACE_MODULE_DEBUG         (1)
+
+/* //////////////////////////////////////////////////////////////////////////////////////
  * includes
  */
 #include "thread.h"
@@ -114,11 +120,12 @@ tt_thread_ref_t tt_thread_init(tt_char_t const* name, tt_thread_func_t func, tt_
     } while (0);
     
     // exit attr
-    pthread_attr_destroy(&attr);
+    if(stack) pthread_attr_destroy(&attr);
 
     // faile
     if(!ok)
     {
+        tt_trace_d("thread init failed");
         // exit arguments
         if(args) tt_free(args);
         args = tt_null;
@@ -128,6 +135,7 @@ tt_thread_ref_t tt_thread_init(tt_char_t const* name, tt_thread_func_t func, tt_
         thread = tt_null;
     }
 
+    tt_trace_d("thread, %p", thread->pthread);
     // ok
     return ok? ((tt_thread_ref_t)thread) : tt_null;
 }

@@ -55,6 +55,8 @@ tt_void_t tt_demo_platform_thread_main(tt_void_t)
     {
         tt_thread_ref_t thread_ref1 = tt_thread_init(tt_null, thread1, tt_null, 0);
 
+        tt_trace_d("thread_ref1, %p", thread_ref1);
+
         if(thread_ref1)
         {
             tt_int_t retval = 0;

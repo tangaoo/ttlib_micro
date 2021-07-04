@@ -20,7 +20,7 @@
 #include "ttlib.h"
 
 // the ttlib version
-static const char* version = "v0.1.1";
+static const char* version = "v0.1.2";
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * implementation
@@ -29,39 +29,39 @@ tt_bool_t tt_lib_init(tt_handle_t priv)
 {
 	tt_bool_t ret = tt_false;
 	
-	tt_trace_d("********************************************");
+	tt_trace_raw("********************************************\n");
 
 	/// done
 	do{
 		/// trace init
 		if(!tt_trace_init()) break;
 
-		tt_trace_d("ttlib version(%s)", version);
+		tt_trace_raw("ttlib version(%s)\n", version);
 
 		// detect compiler and print
 #ifdef TT_COMPILER_IS_GCC
-		tt_trace_d("compiler is gcc", version);
+		tt_trace_raw("compiler is gcc\n");
 #elif defined TT_COMPILER_IS_MSVC 
-		tt_trace_d("compiler is msvc", version);
+		tt_trace_raw("compiler is msvc\n");
 #elif defined TT_COMPILER_IS_CLANG
-		tt_trace_d("compiler is clang", version);
+		tt_trace_raw("compiler is clang\n");
 #elif defined TT_COMPILER_IS_DSP
-		tt_trace_d("compiler is dsp", version);
+		tt_trace_raw("compiler is dsp\n");
 #else
-		tt_trace_d("compiler is unkonwn", version);
+		tt_trace_raw("compiler is unkonwn\n");
 #endif
 
 		// detect cpu endian
-		if(tt_little_endian() == TT_LITTLE_ENDIAN) tt_trace_d("litter endian");
-		else if(tt_little_endian() == TT_BIG_ENDIAN) tt_trace_d("big endian");
-		else tt_trace_d("wrong endian");
+		if(tt_little_endian() == TT_LITTLE_ENDIAN) tt_trace_raw("litter endian\n");
+		else if(tt_little_endian() == TT_BIG_ENDIAN) tt_trace_raw("big endian\n");
+		else tt_trace_w("wrong endian");
 
 		ret = tt_true;
 	} while (0);
 	
 	if(!ret) tt_trace_e("ttlib init error!!!");
 
-	tt_trace_d("********************************************");
+	tt_trace_raw("********************************************\n");
 
 	return ret;
 }
