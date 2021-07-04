@@ -40,7 +40,8 @@ tt_bool_t tt_mutex_enter_try_without_profiler(tt_mutex_ref_t mutex)
     // check, @note we cannot use asset/trace because them will use mutex
     tt_check_return_val(mutex, tt_false);
     
-    return pthread_mutex_trylock((pthread_mutex_t*)mutex) == 0 ? tt_true : tt_false;
+    // return pthread_mutex_trylock((pthread_mutex_t*)mutex) == 0 ? tt_true : tt_false;
+    return tt_false;
 }
 
 /* //////////////////////////////////////////////////////////////////////////////////////
