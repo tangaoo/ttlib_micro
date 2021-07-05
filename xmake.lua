@@ -2,7 +2,7 @@ add_rules("mode.debug", "mode.release")
 --add_includedirs("src/ttlib")
 set_languages("c11") 
 
-target("ttlib_mirco")
+target("ttlib_micro")
     set_kind("static")
     add_files("src/ttlib_mirco/**.c")
     add_headerfiles("src/(ttlib_mirco/**.h)")
@@ -19,7 +19,7 @@ target("ttlib_mirco")
     end
 
 
-target("ttlib_mirco_demo")
+target("demo")
     set_kind("binary")
     add_deps("ttlib_mirco")
     add_files("src/demo/**.c")    
