@@ -4,8 +4,8 @@ set_languages("c11")
 
 target("ttlib_micro")
     set_kind("static")
-    add_files("src/ttlib_mirco/**.c")
-    add_headerfiles("src/(ttlib_mirco/**.h)")
+    add_files("src/ttlib_micro/**.c")
+    add_headerfiles("src/(ttlib_micro/**.h)")
 
     if is_plat("windows") then
     -- set third party lib
@@ -21,12 +21,12 @@ target("ttlib_micro")
 
 target("demo")
     set_kind("binary")
-    add_deps("ttlib_mirco")
+    add_deps("ttlib_micro")
     add_files("src/demo/**.c")    
     -- add_syslinks("pthread")
 
     -- set ttlib .h file
-    add_includedirs("src/ttlib_mirco/")
+    add_includedirs("src/ttlib_micro/")
     
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
