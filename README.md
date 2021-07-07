@@ -77,3 +77,6 @@ xmake
 * [ ] 增加模块必要文档；
 * [ ] demo 覆盖完整；
 * [ ] 引入第三方测试框架。
+
+## 哪些库引用了 ttlib_micro
+* [uSPF](https://github.com/tangaoo/uSPF)
