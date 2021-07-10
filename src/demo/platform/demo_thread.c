@@ -21,7 +21,7 @@
 #include "ttlib.h"
 #include "../color.h" 
 
-tt_int_t thread1(tt_void_t* priv)
+tt_int_t thread1(tt_cpointer_t priv)
 {
     // done
     do

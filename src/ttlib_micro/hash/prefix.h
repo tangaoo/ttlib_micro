@@ -1,21 +1,18 @@
 /*
  * @Copyright (C) 2019-2021, TTLIB
- * @file       utils.h
- * @ingroup    utils
+ * @file       prefix.h
+ * @ingroup    buffer
  * @author     tango
  * @date       2020-11-19 
- * @brief      utils.h file
+ * @brief      prefix.h file
  */
 
-#ifndef _TT_UTILS_UTILS_H_
-#define _TT_UTILS_UTILS_H_
+#ifndef TT_HASH_PREFIX_H
+#define TT_HASH_PREFIX_H
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * includes
  */
-#include "trace.h"
-#include "bits.h"
-#include "dump.h"
-#include "endian.h"
+#include "../prefix.h"
 
 #endif

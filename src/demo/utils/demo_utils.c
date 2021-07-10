@@ -64,23 +64,3 @@ tt_uint32_t tt_demo_utils_main(tt_void_t)
 	return tt_true;
 }
 
-tt_void_t tt_demo_crc8_main(tt_void_t)
-{
-	// print title
-	tt_print_title("demo crc8 main");
-
-	tt_uint8_t crcVal;
-	tt_char_t *str = "hello, world";
-
-	crcVal = tt_crc8_make_from_cstr(str, 1);
-	tt_trace_d("crc, %d", crcVal);
-
-	crcVal = tt_crc8_make_from_cstr(str, 1);
-	tt_trace_d("crc, %d", crcVal);
-
-	crcVal = tt_crc8_make_from_cstr(str, 2);
-	tt_trace_d("crc, %d", crcVal);
-
-	crcVal = tt_crc8_make_from_cstr(str, 2);
-	tt_trace_d("crc, %d", crcVal);
-}

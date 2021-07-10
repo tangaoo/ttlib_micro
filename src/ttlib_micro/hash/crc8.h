@@ -1,14 +1,16 @@
-/*
+/*!The TT Library
+ *
  * @Copyright (C) 2019-2021, TTLIB
+ *
  * @file       crc8.h
- * @ingroup    utils
+ * @ingroup    hash
  * @author     tango
- * @date       2020-11-19 
+ * @date       2021-07-10 
  * @brief      crc8.h file
  */
 
-#ifndef TB_HASH_CRC8_H
-#define TB_HASH_CRC8_H
+#ifndef TT_HASH_CRC8_H
+#define TT_HASH_CRC8_H
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * includes
@@ -20,7 +22,7 @@
  */
 
 // encode value
-#define tt_crc8_make_value(mode, crc, value)       tt_crc8_make(mode, crc, (tb_byte_t const*)&(value), sizeof(value))
+#define tt_crc8_make_value(mode, crc, value)       tt_crc8_make(mode, crc, (tt_byte_t const*)&(value), sizeof(value))
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * extern

@@ -7,8 +7,8 @@
  * @brief      prefix.h file
  */
 
-#ifndef _TT_PREFIX_PREFIX_H_
-#define _TT_PREFIX_PREFIX_H_
+#ifndef TT_PREFIX_PREFIX_H
+#define TT_PREFIX_PREFIX_H
 
 /*//////////////////////////////////////////////////////////////////////////////////////
 * includes 

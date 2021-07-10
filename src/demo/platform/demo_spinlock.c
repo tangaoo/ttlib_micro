@@ -31,7 +31,7 @@ static tt_spinlock_t lock = TT_SPINLOCK_INITIALIZER;
 /* //////////////////////////////////////////////////////////////////////////////////////
  * implementation
  */
-tt_int_t func_add(tt_void_t* priv)
+tt_int_t func_add(tt_cpointer_t priv)
 {
     for(tt_uint_t i = 0; i < 10000; i++)
     {
