@@ -26,6 +26,12 @@
 #	define __tt_extern_c_leave__
 #endif
 
+#ifndef __cplusplus
+#   define __tt_register__                           register
+#else
+#   define __tt_register__
+#endif
+
 #define __tt_volatile__	                              volatile
 #define __tt_func__                                   __FUNCTION__
 #define __tt_file__                                   __FILE__

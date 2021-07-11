@@ -10,15 +10,16 @@
 /* //////////////////////////////////////////////////////////////////////////////////////
  * includes
  */
+#include <string.h>
 #include "element.h"
-#include "../../platform/platform.h"
+#include "hash.h"
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * private interfaces
  */
 static tt_size_t tt_element_uint8_hash(tt_element_ref_t e, tt_cpointer_t data, tt_size_t mask, tt_size_t index)
 {
-    return 0; /// TODO
+    return tt_element_hash_uint8(tt_p2u8(data), mask, index);
 }
 
 static tt_long_t tt_element_uint8_comp(tt_element_ref_t e, tt_cpointer_t ldata, tt_cpointer_t rdata)
@@ -34,7 +35,7 @@ static tt_pointer_t tt_element_uint8_data(tt_element_ref_t e, tt_cpointer_t buff
     return tt_u2p(*((tt_uint8_t *)buff));
 }
 
-tt_char_t const * tt_element_uint8_cstr(tt_element_ref_t e, tt_cpointer_t data, tt_char_t *str, tt_size_t maxn)
+static tt_char_t const * tt_element_uint8_cstr(tt_element_ref_t e, tt_cpointer_t data, tt_char_t *str, tt_size_t maxn)
 {
     /// check
     tt_assert_and_check_return_val(e && str, "");  
@@ -45,7 +46,7 @@ tt_char_t const * tt_element_uint8_cstr(tt_element_ref_t e, tt_cpointer_t data, 
     return (tt_char_t const *)str;
 }
 
-tt_void_t tt_element_uint8_free(tt_element_ref_t e, tt_pointer_t buff)
+static tt_void_t tt_element_uint8_free(tt_element_ref_t e, tt_pointer_t buff)
 {
     /// check
     tt_assert_and_check_return(buff);
@@ -53,7 +54,7 @@ tt_void_t tt_element_uint8_free(tt_element_ref_t e, tt_pointer_t buff)
     *((tt_uint8_t *)buff) = 0;
 }
 
-tt_void_t tt_element_uint8_copy(tt_element_ref_t e, tt_pointer_t buff, tt_cpointer_t data)
+static tt_void_t tt_element_uint8_copy(tt_element_ref_t e, tt_pointer_t buff, tt_cpointer_t data)
 {
     /// check
     tt_assert_and_check_return(buff);
@@ -61,20 +62,20 @@ tt_void_t tt_element_uint8_copy(tt_element_ref_t e, tt_pointer_t buff, tt_cpoint
     *((tt_uint8_t *)buff) = tt_p2u8(data);
 }
 
-tt_void_t tt_element_uint8_nfree(tt_element_ref_t e, tt_pointer_t buff, tt_size_t size)
+static tt_void_t tt_element_uint8_nfree(tt_element_ref_t e, tt_pointer_t buff, tt_size_t size)
 {
     /// check
     tt_assert_and_check_return(buff);
 
-    if(size) tt_memset((tt_uint8_t *)buff, 0, size);
+    if(size) memset((tt_uint8_t *)buff, 0, size);
 }
 
-tt_void_t tt_element_uint8_ncopy(tt_element_ref_t e, tt_pointer_t buff, tt_cpointer_t data, tt_size_t size)
+static tt_void_t tt_element_uint8_ncopy(tt_element_ref_t e, tt_pointer_t buff, tt_cpointer_t data, tt_size_t size)
 {
     /// check
     tt_assert_and_check_return(buff);
 
-    if(size) tt_memset((tt_uint8_t *)buff, tt_p2u8(data), size);   
+    if(size) memset((tt_uint8_t *)buff, tt_p2u8(data), size);   
 }
 
 /* //////////////////////////////////////////////////////////////////////////////////////
