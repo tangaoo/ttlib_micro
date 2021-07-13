@@ -31,7 +31,7 @@ xmake
 
 #### container（容器模块）
 容器模块主要实现常用数据结构，以及迭代器。
-- element (int ptr mem str等数据抽象), 详见文件[第2篇 ttlib element模块介绍](https://tangaoo.github.io/2021/07/12/ttlib-element/)。
+- element (int ptr mem str等数据抽象), 详见文章[第2篇 ttlib element模块介绍](https://tangaoo.github.io/2021/07/12/ttlib-element/)。
 - 迭代器
 - 外置单链表、外置双链表
 - 动态数组
