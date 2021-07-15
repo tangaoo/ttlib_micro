@@ -87,6 +87,14 @@ tt_vector_ref_t         tt_vector_init(tt_size_t grow, tt_element_t e);
  */
 tt_void_t               tt_vector_exit(tt_vector_ref_t vector);
 
+/*! vector clear
+ *
+ * @param vector        the vector
+ *
+ * @return              tt_void_t
+ */
+tt_void_t               tt_vector_clear(tt_vector_ref_t vector);
+
 /*! vector data
  *
  * @param vector        the vector
