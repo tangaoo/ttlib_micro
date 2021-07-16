@@ -269,15 +269,91 @@ tt_bool_t tt_vector_resize(tt_vector_ref_t self, tt_size_t size)
     tt_vector_t* vector = (tt_vector_t*)self;
     tt_assert_and_check_return_val(vector, tt_false);
 
-    //
+    // done
+    tt_bool_t ok = tt_false;
+    do
+    {
+        // size < vector's size
+        if (size < vector->size)
+        {
+            if (vector->element.nfree)
+                vector->element.nfree(&vector->element, vector->data + size * vector->element.size, vector->size - size);
+        }
+        // size > vector's maxn
+        if (size > vector->maxn)
+        {
+            tt_size_t maxn = tt_align(size, vector->maxn);
+            tt_assert_and_check_break(maxn < TT_VECTOR_MAXN);
+
+            // realloc data
+            vector->data = (tt_byte_t *)tt_ralloc(vector->data, maxn * vector->element.size);
+            tt_assert_and_check_break(vector->data);
+
+            // must be algin by 4-bytes
+            tt_assert_and_check_break(!(((tt_size_t)vector->data) & 3));
+
+            // clear new vector item
+            tt_memset(vector->data + vector->size * vector->element.size, 0, (maxn - vector->maxn) * vector->element.size);
+            vector->maxn = maxn;
+        }
+
+        // update size
+        vector->size = size;
+        ok = tt_true;
+    } while (0);
     
+    return ok;
 }
 
-tt_void_t tt_vector_clear(tt_vector_ref_t vector);
+tt_void_t tt_vector_copy(tt_vector_ref_t self, tt_vector_ref_t copy)
+{
+    tt_vector_t* vector = (tt_vector_t*)self;
+    tt_vector_t const* vector_copy = (tt_vector_t*)copy;
+    tt_assert_and_check_return(vector && vector_copy);, tt_false);
 
-tt_void_t tt_vector_copy(tt_vector_ref_t vector, tt_vector_ref_t copy);
+    // done
+    do
+    {
+        // check element
+        tt_assert_and_check_break(vector->element.size == vector_copy->element.size);
+        tt_assert_and_check_break(vector->element.type == vector_copy->element.type);
 
-tt_void_t tt_vector_insert_prev(tt_vector_ref_t vector, tt_size_t itor, tt_cpointer_t data);
+        // null? 
+        if(!vector_copy->size)
+        {
+            tt_vector_clear(vector);
+            break;
+        }
+        
+        if(vector_copy->size > vector->size) tt_vector_resize(vector, vector_copy->size);
+
+        tt_assert_and_check_break(vector->data && vector_copy->data && vector->size >= vector_copy->size);
+        tt_memcpy(vector->data, vector_copy->data, vector_copy->size * vector_copy->element.size);
+        
+        // update size
+        vector->size = vector_copy->size;
+
+    } while (0);
+
+}
+
+tt_void_t tt_vector_insert_prev(tt_vector_ref_t self, tt_size_t itor, tt_cpointer_t data)
+{
+    tt_vector_t* vector = (tt_vector_t*)self;
+    tt_assert_and_check_return(vector && vector->data && vector->element.size && itor <= vector->size);
+
+    tt_size_t osize = vector->size;
+    // resizett
+    if(!tt_vector_resize(vector, osize + 1))
+    {
+        tt_trace_d("vector resize failed");
+        return;        
+    }
+
+    // memmov
+    if(itor != osize) tt_memmov(vector->data + (itor + 1) * vector->element.size, vector->data + itor * vector->element.size, );
+
+}
 
 tt_void_t tt_vector_insert_next(tt_vector_ref_t vector, tt_size_t itor, tt_cpointer_t data);
 
