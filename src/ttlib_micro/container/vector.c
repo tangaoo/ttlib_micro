@@ -20,6 +20,7 @@
  */
 #include "element/element.h"
 #include "vector.h"
+#include "../platform/port.h"
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * macros
@@ -122,12 +123,12 @@ static tt_pointer_t tt_vector_itor_item(tt_iterator_ref_t iterator, tt_size_t it
 static tt_void_t tt_vector_itor_copy(tt_iterator_ref_t iterator, tt_size_t itor, tt_cpointer_t data)
 {
     tt_vector_t* vector = (tt_vector_t*)iterator;
-    tt_assert_and_check_return_val(vector && itor < vector->size, tt_null);
+    tt_assert_and_check_return(vector && itor < vector->size);
 
     vector->element.copy(&vector->element, vector->data + itor * iterator->step, data); 
 }
 
-static tt_long_t tt_vector_itor_comp(tt_iterator_ref_t iterator, tt_cpointer_t ldata, tt_cpointer_t rdata)
+static tt_int32_t tt_vector_itor_comp(tt_iterator_ref_t iterator, tt_cpointer_t ldata, tt_cpointer_t rdata)
 {
     tt_vector_t* vector = (tt_vector_t*)iterator;
     tt_assert(vector && vector->element.comp);
@@ -141,7 +142,7 @@ static tt_void_t tt_vector_itor_remove(tt_iterator_ref_t iterator, tt_size_t ito
     tt_assert(vector);
 
     // remove
-    tt_vector_remove(vector, itor);
+    tt_vector_remove((tt_vector_ref_t)vector, itor);
 }
 
 /* //////////////////////////////////////////////////////////////////////////////////////
@@ -223,7 +224,7 @@ tt_void_t tt_vector_exit(tt_vector_ref_t self)
     tt_assert_and_check_return(vector);
 
     // clear data
-    tt_vector_clear(vector);
+    tt_vector_clear(self);
 
     // free data
     if(vector->data) 
@@ -309,7 +310,7 @@ tt_void_t tt_vector_copy(tt_vector_ref_t self, tt_vector_ref_t copy)
 {
     tt_vector_t* vector = (tt_vector_t*)self;
     tt_vector_t const* vector_copy = (tt_vector_t*)copy;
-    tt_assert_and_check_return(vector && vector_copy);, tt_false);
+    tt_assert_and_check_return(vector && vector_copy);
 
     // done
     do
@@ -321,13 +322,13 @@ tt_void_t tt_vector_copy(tt_vector_ref_t self, tt_vector_ref_t copy)
         // null? 
         if(!vector_copy->size)
         {
-            tt_vector_clear(vector);
+            tt_vector_clear(self);
             break;
         }
         
-        if(vector_copy->size > vector->size) tt_vector_resize(vector, vector_copy->size);
+        if(vector_copy->size > vector->size) tt_vector_resize(self, vector_copy->size);
 
-        tt_assert_and_check_break(vector->data && vector_copy->data && vector->size >= vector_copy->size);
+        // tt_assert_and_check_break(vector->data && vector_copy->data && vector->size >= vector_copy->size);
         tt_memcpy(vector->data, vector_copy->data, vector_copy->size * vector_copy->element.size);
         
         // update size
@@ -335,6 +336,7 @@ tt_void_t tt_vector_copy(tt_vector_ref_t self, tt_vector_ref_t copy)
 
     } while (0);
 
+    return;
 }
 
 tt_void_t tt_vector_insert_prev(tt_vector_ref_t self, tt_size_t itor, tt_cpointer_t data)
@@ -344,37 +346,102 @@ tt_void_t tt_vector_insert_prev(tt_vector_ref_t self, tt_size_t itor, tt_cpointe
 
     tt_size_t osize = vector->size;
     // resizett
-    if(!tt_vector_resize(vector, osize + 1))
+    if(!tt_vector_resize(self, osize + 1))
     {
         tt_trace_d("vector resize failed");
         return;        
     }
 
     // memmov
-    if(itor != osize) tt_memmov(vector->data + (itor + 1) * vector->element.size, vector->data + itor * vector->element.size, );
+    if(itor != osize) tt_memmov(vector->data + (itor + 1) * vector->element.size, 
+                                vector->data + itor * vector->element.size, (osize - itor) * vector->element.size);
 
+    vector->element.dupl(&vector->element, vector->data + itor * vector->element.size, data);
 }
 
-tt_void_t tt_vector_insert_next(tt_vector_ref_t vector, tt_size_t itor, tt_cpointer_t data);
+tt_void_t tt_vector_insert_next(tt_vector_ref_t self, tt_size_t itor, tt_cpointer_t data)
+{
+    tt_vector_insert_prev(self, tt_iterator_next(self, itor), data);
+}
 
-tt_void_t tt_vector_insert_head(tt_vector_ref_t vector, tt_cpointer_t data);
+tt_void_t tt_vector_insert_head(tt_vector_ref_t self, tt_cpointer_t data)
+{
+    tt_vector_insert_prev(self, tt_iterator_head(self), data);
+}
 
-tt_void_t tt_vector_insert_tail(tt_vector_ref_t vector, tt_cpointer_t data);
+tt_void_t tt_vector_insert_tail(tt_vector_ref_t self, tt_cpointer_t data)
+{
+    tt_vector_insert_prev(self, tt_iterator_tail(self), data);
+}
 
-tt_void_t tt_vector_replace(tt_vector_ref_t vector, tt_size_t itor, tt_cpointer_t data);
+tt_void_t tt_vector_replace(tt_vector_ref_t self, tt_size_t itor, tt_cpointer_t data)
+{
+    tt_vector_t* vector = (tt_vector_t*)self;
+    tt_assert_and_check_return(vector && vector->data && vector->element.size && itor < vector->size);
 
-tt_void_t tt_vector_replace_head(tt_vector_ref_t vector, tt_cpointer_t data);
+    if(vector->element.repl)
+        vector->element.repl(&vector->element, vector->data + itor * vector->element.size, data);
+}
 
-tt_void_t tt_vector_replace_last(tt_vector_ref_t vector, tt_cpointer_t data);
+tt_void_t tt_vector_replace_head(tt_vector_ref_t self, tt_cpointer_t data)
+{
+    tt_vector_replace(self, tt_iterator_head(self), data);
+}
 
-tt_void_t tt_vector_remove(tt_vector_ref_t vector, tt_size_t itor);
+tt_void_t tt_vector_replace_last(tt_vector_ref_t self, tt_cpointer_t data)
+{
+    tt_vector_replace(self, tt_iterator_last(self), data);
+}
 
-tt_void_t tt_vector_remove_head(tt_vector_ref_t vector);
+tt_void_t tt_vector_remove(tt_vector_ref_t self, tt_size_t itor)
+{
+    tt_vector_t* vector = (tt_vector_t*)self;
+    tt_assert_and_check_return(vector && vector->data && vector->element.size && itor < vector->size);
 
-tt_void_t tt_vector_remove_last(tt_vector_ref_t vector);
+    // free item
+    if(vector->element.free)
+        vector->element.free(&vector->element, vector->data + itor * vector->element.size);
 
-tt_size_t tt_vector_size(tt_vector_ref_t vector);
+    tt_size_t osize = vector->size;
 
-tt_size_t tt_vector_grow(tt_vector_ref_t vector);
+    // memmov
+    if(itor != tt_iterator_last(self)) 
+        tt_memmov(vector->data + itor * vector->element.size, 
+                  vector->data + (itor + 1) * vector->element.size, (osize - itor -1) * vector->element.size);
 
-tt_size_t tt_vector_maxn(tt_vector_ref_t vector);
+    // update size
+    vector->size--;
+}
+tt_void_t tt_vector_remove_head(tt_vector_ref_t self)
+{
+    tt_vector_remove(self, tt_iterator_head(self));
+}
+
+tt_void_t tt_vector_remove_last(tt_vector_ref_t self)
+{
+    tt_vector_remove(self, tt_iterator_last(self));
+}
+
+tt_size_t tt_vector_size(tt_vector_ref_t self)
+{
+    tt_vector_t* vector = (tt_vector_t*)self;
+    tt_assert_and_check_return_val(vector, 0);
+
+    return vector->size;
+}
+
+tt_size_t tt_vector_grow(tt_vector_ref_t self)
+{
+    tt_vector_t* vector = (tt_vector_t*)self;
+    tt_assert_and_check_return_val(vector, 0);
+
+    return vector->grow;
+}
+
+tt_size_t tt_vector_maxn(tt_vector_ref_t self)
+{
+    tt_vector_t* vector = (tt_vector_t*)self;
+    tt_assert_and_check_return_val(vector, 0);
+
+    return vector->maxn;
+}

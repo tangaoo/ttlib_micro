@@ -12,9 +12,9 @@
 /* //////////////////////////////////////////////////////////////////////////////////////
  * includes
  */
-#include <string.h>
 #include "element.h"
 #include "hash.h"
+#include "../../platform/port.h"
 
 /* //////////////////////////////////////////////////////////////////////////////////////
  * private interfaces
@@ -29,7 +29,7 @@ static tt_long_t tt_element_str_comp(tt_element_ref_t e, tt_cpointer_t ldata, tt
     tt_assert_and_check_return_val(e && ldata && rdata, 0);
 
     // compare it
-    return e->flag ? strcmp((tt_char_t const *)ldata, (tt_char_t const *)rdata) : stricmp((tt_char_t const *)ldata, (tt_char_t const *)rdata);
+    return e->flag ? tt_strcmp((tt_char_t const *)ldata, (tt_char_t const *)rdata) : tt_stricmp((tt_char_t const *)ldata, (tt_char_t const *)rdata);
 }
 
 static tt_pointer_t tt_element_str_data(tt_element_ref_t e, tt_cpointer_t buff)
@@ -66,7 +66,7 @@ static tt_void_t tt_element_str_dupl(tt_element_ref_t e, tt_pointer_t buff, tt_c
     tt_assert_and_check_return(e && buff);
 
     // duplicate it
-    if(data) *((tt_pointer_t**)buff) = strdup((tt_char_t const*)data);
+    if(data) *((tt_pointer_t**)buff) = (tt_pointer_t)tt_strdup((tt_char_t const*)data);
     else *((tt_pointer_t**)buff) = tt_null;
 }
 
@@ -87,7 +87,7 @@ static tt_void_t tt_element_str_copy(tt_element_ref_t e, tt_pointer_t buff, tt_c
     // check
     tt_assert_and_check_return(e && buff);
 
-    *((tt_pointer_t*)buff) = data;
+    *((tt_cpointer_t*)buff) = data;
 }
 
 static tt_void_t tt_element_str_nfree(tt_element_ref_t e, tt_pointer_t buff, tt_size_t size)

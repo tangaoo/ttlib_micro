@@ -15,10 +15,10 @@
  */
 #include "mutex.h"
 #include "spinlock.h"
-#include "native_memcpy.h"
 #include "semaphore.h"
 #include "thread.h"
 #include "time.h"
+#include "port.h"
 
 
 #endif  

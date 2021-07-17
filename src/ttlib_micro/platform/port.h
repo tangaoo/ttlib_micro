@@ -15,11 +15,47 @@
 /* //////////////////////////////////////////////////////////////////////////////////////
  * includes
  */
+#include "prefix.h"
 
-#include "cpu.h"
-#include "type.h"
-#include "check.h"
-#include "assert.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <strings.h>
+
+/* //////////////////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+// memory interface
+#define tt_memcpy(dst, src, size)           memcpy(dst, src, size)
+#define tt_memset(dst, data, size)          memset(dst, data, size)
+#define tt_memmov(dst, data, size)          memmove(dst, data, size)
+
+// string interface
+#define tt_stricmp(dst_str, src_str)        strcasecmp(dst_str, src_str)
+#define tt_strcmp(dst_str, src_str)         strcmp(dst_str, src_str)
+#define tt_strcpy(dst_str, src_str)         strcpy(dst_str, src_str)
+#define tt_strlen(str)                      strlen(str)
+
+static tt_char_t* tt_strdup(tt_char_t const* s)
+{
+    // check
+    tt_assert_and_check_return_val(s, tt_null);
+
+    // make
+    __tt_register__ tt_size_t   n = tt_strlen(s);
+    __tt_register__ tt_char_t*  p = tt_malloc(n + 1);
+    tt_assert_and_check_return_val(p, tt_null);
+
+    // copy
+    tt_memcpy(p, s, n);
+
+    // end
+    p[n] = '\0';
+
+    // ok
+    return p;
+}
 
 // memset_ptr
 #ifdef TT_CPU_BIT_64
