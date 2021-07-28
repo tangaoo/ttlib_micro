@@ -169,53 +169,23 @@ typedef enum __tt_element_type_e
 /// the element type
 typedef struct __tt_element_t
 {
-    /// the element type
-    tt_uint16_t                           type;
+    tt_uint16_t                    type;   // the element type
+    tt_uint16_t                    flag;   // the element flag
+    tt_uint16_t                    size;   // the element size
+    tt_cpointer_t                  priv;   // the priv data
 
-    /// the element flag
-    tt_uint16_t                           flag;
-
-    /// the element size
-    tt_uint16_t                           size;
-
-    /// the priv data
-    tt_cpointer_t                         priv;
-
-    /// the hash function
-    tt_element_hash_func_t                hash;
-
-    /// the commpare function
-    tt_element_comp_func_t                comp;
-
-    /// the data function
-    tt_element_data_func_t                data;
-
-    /// the string function
-    tt_element_cstr_func_t                cstr;
-
-    /// the free function
-    tt_element_free_func_t                free;
-
-    /// the duplicate function
-    tt_element_dupl_func_t                dupl;
-
-    /// the replace function
-    tt_element_repl_func_t                repl;
-
-    /// the copy functoin
-    tt_element_copy_func_t                copy;
-
-    /// the free elements function
-    tt_element_nfree_func_t               nfree;
-
-    /// the duplicate elements function
-    tt_element_ndupl_func_t               ndupl;
-
-    /// the replace elements function
-    tt_element_nrepl_func_t               nrepl;    
-
-    /// the copy elements functoin
-    tt_element_ncopy_func_t               ncopy;
+    tt_element_hash_func_t         hash;   // the hash function
+    tt_element_comp_func_t         comp;   // the commpare function
+    tt_element_data_func_t         data;   // the data function
+    tt_element_cstr_func_t         cstr;   // the string function
+    tt_element_free_func_t         free;   // the free function
+    tt_element_dupl_func_t         dupl;   // the duplicate function
+    tt_element_repl_func_t         repl;   // the replace function
+    tt_element_copy_func_t         copy;   // the copy functoin
+    tt_element_nfree_func_t        nfree;  // the free elements function
+    tt_element_ndupl_func_t        ndupl;  // the duplicate elements function
+    tt_element_nrepl_func_t        nrepl;  // the replace elements function
+    tt_element_ncopy_func_t        ncopy;  // the copy elements functoin
 
 }tt_element_t;
 
